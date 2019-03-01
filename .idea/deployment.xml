@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="progryx" uploadOnCheckin="e75eb3f7-ee07-4a8f-bf78-e20dca7a543a">
+    <serverData>
+      <paths name="progryx">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myUploadOnCheckinName" value="progryx" />
+  </component>
+</project>

@@ -1,0 +1,22 @@
+.nav {
+    grid-area:n;
+    background: #0074D9;
+    
+}
+
+.item {
+    text-align: center;
+}
+
+.item a{
+    color: white;
+    text-decoration: none;
+
+}
+.item a:hover{
+    color:#000;
+}
+
+.item .active{
+    color: #006;
+}
