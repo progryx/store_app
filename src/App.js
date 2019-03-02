@@ -9,12 +9,6 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
-const DialogsFunction = (props) => {
-    let messages = props.messagesData;
-    let dialogs = props.dialogsData;
-   // return ( <Dialogs messagesData={messages} dialogsData={dialogs} /> );
-};
-
 const App = (props) => {
         return (
 
@@ -24,8 +18,8 @@ const App = (props) => {
                     <Header/>
                     <Navbar/>
                     <div className="app-wrapper-content">
-                        <Route path="/profile" component={Profile}/>
-                        <Route path="/dialogs" render ={ DialogsFunction(props) }/>
+                        <Route path="/profile" render ={ () => <Profile  postsData={props.data.profilePage.posts} />  }/>
+                        <Route path="/dialogs" render ={ () => <Dialogs messagesData={props.data.messagesPage.messages} dialogsData={props.data.messagesPage.dialogs} />  }/>
                         <Route path="/news" component={News}/>
                         <Route path="/music" component={Music}/>
                         <Route path="/settings" component={Settings}/>
