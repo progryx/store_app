@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Message from "./Message/Message";
 import Dialogitem from "./Dialogitem/Dialogitem";
 import style from "./Dialogs.module.css";
+import {sendMessageActionCreator, updateDialogActionCreator} from "../../redux/State";
 
 
 
@@ -10,20 +11,24 @@ const Dialogs = (props) => {
 
 
 
-   let messages = props.messagesData.map( m => <Message message={m.message}/>);
+   let messages = props.messagesData.messages.map( m => <Message message={m.message}/>);
 
-
+    //debugger;
    let dialogs = props.dialogsData.map ( dialog =>  <Dialogitem id={dialog.id} name={dialog.name}/> );
 
    let textAreaRef = React.createRef();
 
-   let getCurrentMessage = () => {
-
-
-   };
-   let sendMessage = () => {
+   let updateCurrentMessage = () => {
+      // debugger;
        let message = textAreaRef.current.value;
-       props.dispatch({type:'SEND-MESSAGE', message: message});
+       let action = updateDialogActionCreator(message);
+       props.dispatch(action);
+   };
+
+   let sendMessage = () => {
+       //debugger;
+       let action = sendMessageActionCreator();
+       props.dispatch(action);
    };
 
     return (
@@ -36,7 +41,7 @@ const Dialogs = (props) => {
                     {messages}
                 </div>
                 <div className={style["add-message"]}>
-                    <textarea ref={textAreaRef} onChange={getCurrentMessage} cols="50" rows="5" value={props.currentMessage} />
+                    <textarea ref={textAreaRef} onChange={updateCurrentMessage} cols="50" rows="5" value={props.messagesData.currentMessage} />
                     <button onClick={sendMessage}>Отправить</button>
                 </div>
             </div>

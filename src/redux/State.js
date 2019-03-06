@@ -1,4 +1,7 @@
-
+const SEND_MESSAGE = 'SEND-MESSAGE';
+const UPDATE_NEW_MESSAGE = 'UPDATE-NEW-MESSAGE';
+const ADD_POST = 'ADD-POST';
+const CHANGE_NEW_POST = 'CHANGE-NEW-POST';
 let store = {
 
     _subscriber() { // просто заглушка для переопределения
@@ -45,7 +48,7 @@ let store = {
 
     dispatch(action) { // обработка данных и взаимодействие с данными. компоненты вызывают диспатч, если нужжно обработать данные
        // debugger;
-        if (action.type === 'ADD-POST') { // добавление поста в профиле
+        if (action.type === ADD_POST) { // добавление поста в профиле
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPost, // просто заносим в новое сообщение текущий текст текстэрии
@@ -54,19 +57,27 @@ let store = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPost = '';
             this._subscriber(this._state);
-        } else if (action.type === 'CHANGE-NEW-POST') {
+        } else if (action.type === CHANGE_NEW_POST) {
             this._state.profilePage.newPost = action.value;
             this._subscriber(this._state);
-        } else if (action.type === 'SEND-MESSAGE') {
-            let message = {id: 7, message: action.message};
+        } else if (action.type === SEND_MESSAGE) {
+            let message = {id: 7, message: this._state.messagesPage.currentMessage};
             this._state.messagesPage.messages.push(message);
             this._state.messagesPage.currentMessage = '';
+            this._subscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE) {
+            //debugger;
+            this._state.messagesPage.currentMessage = action.currentMessage;
+            this._subscriber(this._state);
         }
 
     }
 
-
 };
+
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE});
+export const updateDialogActionCreator = (message) => ({type: UPDATE_NEW_MESSAGE, currentMessage: message });
+
 window.store = store;
 
 export default store;

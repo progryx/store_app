@@ -26,7 +26,7 @@ const App = (props) => {
                             newPost = {props.data.profilePage.newPost}
                         />  }/>
                         <Route path="/dialogs" render ={ () => <Dialogs
-                            messagesData={props.data.messagesPage.messages}
+                            messagesData={props.data.messagesPage}
                             dialogsData={props.data.messagesPage.dialogs}
                             dispatch={props.dispatch}
                         />  }/>
