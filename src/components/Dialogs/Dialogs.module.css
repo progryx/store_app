@@ -22,3 +22,8 @@
 .message:nth-child(even) {
     text-align: right;
 }
+
+.add-message {
+    display: grid;
+    justify-items: start;
+}

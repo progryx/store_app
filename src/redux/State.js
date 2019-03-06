@@ -1,10 +1,11 @@
+
 let store = {
 
-    _subscriber() {
+    _subscriber() { // просто заглушка для переопределения
         console.log('changed');
     },
 
-    _state: {
+    _state: { // данные
         profilePage: {
             posts: [
                 {id: 1, message: 'Hi, how are you', likesCount: 10},
@@ -28,33 +29,44 @@ let store = {
                 {id: 4, message: 'Me too'},
                 {id: 5, message: 'Test_5'},
                 {id: 6, message: 'Test_6'}
-            ]
+            ],
+            currentMessage: ''
+
         }
     },
 
-    getState() {
+    getState() { // возвращает данные
         return this._state;
     },
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPost,
-            likesCount: 0
-        };
-        this._state.profilePage.posts.push(newPost);
-        this._state.profilePage.newPost = '';
-        this._subscriber(this._state);
-    },
-    changePost(value) {
-       // debugger;
-        this._state.profilePage.newPost = value;
-        this._subscriber(this._state);
-    },
-    subscribe(observer) {
+    subscribe(observer) { // функция, которая по сути принимает другую функцию, чтобы та стала частью стора
+                         // в сабскрайбере
         this._subscriber = observer;
+    },
+
+    dispatch(action) { // обработка данных и взаимодействие с данными. компоненты вызывают диспатч, если нужжно обработать данные
+       // debugger;
+        if (action.type === 'ADD-POST') { // добавление поста в профиле
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPost, // просто заносим в новое сообщение текущий текст текстэрии
+                likesCount: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPost = '';
+            this._subscriber(this._state);
+        } else if (action.type === 'CHANGE-NEW-POST') {
+            this._state.profilePage.newPost = action.value;
+            this._subscriber(this._state);
+        } else if (action.type === 'SEND-MESSAGE') {
+            let message = {id: 7, message: action.message};
+            this._state.messagesPage.messages.push(message);
+            this._state.messagesPage.currentMessage = '';
+        }
+
     }
 
 
 };
+window.store = store;
 
 export default store;
