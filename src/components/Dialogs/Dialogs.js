@@ -2,33 +2,23 @@ import React, {Component} from 'react';
 import Message from "./Message/Message";
 import Dialogitem from "./Dialogitem/Dialogitem";
 import style from "./Dialogs.module.css";
-import {sendMessageActionCreator, updateDialogActionCreator} from "../../redux/State";
-
-
 
 const Dialogs = (props) => {
 
 
-
-
-   let messages = props.messagesData.messages.map( m => <Message message={m.message}/>);
-
     //debugger;
-   let dialogs = props.dialogsData.map ( dialog =>  <Dialogitem id={dialog.id} name={dialog.name}/> );
 
-   let textAreaRef = React.createRef();
+   let messages = props.messagesData.map( m => <Message message={m.message}/>); // вывод сообщений
+   let dialogs = props.dialogsData.map ( dialog =>  <Dialogitem id={dialog.id} name={dialog.name}/> ); // вывод диалогов (имена)
+
+   let textAreaRef = React.createRef(); // создание ссылки на текстовую область
 
    let updateCurrentMessage = () => {
-      // debugger;
-       let message = textAreaRef.current.value;
-       let action = updateDialogActionCreator(message);
-       props.dispatch(action);
+       props.updateCurrentMessage(textAreaRef.current.value);
    };
 
    let sendMessage = () => {
-       //debugger;
-       let action = sendMessageActionCreator();
-       props.dispatch(action);
+       props.sendMessage();
    };
 
     return (
