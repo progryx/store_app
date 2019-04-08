@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import profile from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostActionCreator, updatePostActionCreator} from "../../redux/profile-reducer";
 
 const MyPosts = (props) => {
    //debugger;
@@ -10,6 +9,7 @@ const MyPosts = (props) => {
 
 
     let postChange = () => {
+      //  debugger;
         let text = textArea.current.value;
         props.onPostChange(text);
     };

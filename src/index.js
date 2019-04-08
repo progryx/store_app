@@ -7,8 +7,6 @@ import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 
 
-export let renderAllTree = (state) => {
-
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
@@ -17,12 +15,3 @@ export let renderAllTree = (state) => {
         </BrowserRouter>
         , document.getElementById('root')
     );
-
-};
-
-renderAllTree();
-
-store.subscribe(() => { // редакс не передает измененные данные при сабскрайбе. это надо делать явно.
-                        //  let state = store.getState(); // запрос данных
-    renderAllTree(); // передаем данные вручную
-});
