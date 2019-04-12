@@ -8,8 +8,8 @@ const Dialogs = (props) => {
 
     //debugger;
 
-   let messages = props.messagesData.map( m => <Message message={m.message}/>); // вывод сообщений
-   let dialogs = props.dialogsData.map ( dialog =>  <Dialogitem id={dialog.id} name={dialog.name}/> ); // вывод диалогов (имена)
+   let messages = props.messagesData.map( m => <Message message={m.message} key = {m.id} />); // вывод сообщений
+   let dialogs = props.dialogsData.map ( dialog =>  <Dialogitem id={dialog.id} name={dialog.name} key = {dialog.id} /> ); // вывод диалогов (имена)
 
    let textAreaRef = React.createRef(); // создание ссылки на текстовую область
 

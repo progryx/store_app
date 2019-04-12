@@ -47,7 +47,7 @@ let store = {
 
     dispatch(action) { // обработка данных и взаимодействие с данными. компоненты вызывают диспатч, если нужжно обработать данные
        // debugger;
-        this._state.profilePage = profileReducer(action, this._state.profilePage); // редьюсер принимает экшен из диспатча и конкретную часть данных из стейта, изменяет ее и возвращает эту часть в измененном виде.
+        this._state.profilePage = profileReducer(action, this._state.profilePage); // редьюсер принимает экшен из диспатча и конкретную часть данных из СТОРа, изменяет ее и возвращает эту часть в измененном виде.
         this._state.messagesPage = dialogsReducer(action, this._state.messagesPage);
         debugger;
         this._subscriber(this._state);

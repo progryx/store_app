@@ -11,6 +11,7 @@ let initialState = {posts: [
     newPost: ''};
 
 const profileReducer = (state = initialState, action) => {
+
     switch (action.type){
         default: return state; // ничего не происходит, возвращает то что пришло
         case ADD_POST: { // добавление поста в профиле
@@ -19,13 +20,17 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPost, // просто заносим в новое сообщение текущий текст текстэрии
                 likesCount: 0
             };
-            state.posts.push(newPost);
-            state.newPost = '';
-            return state;
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPost: ''
+            }
         }
         case CHANGE_NEW_POST: {
-            state.newPost = action.value;
-            return state;
+            return {
+                ...state,
+                newPost: action.value
+            }
         }
     }
     return state;
