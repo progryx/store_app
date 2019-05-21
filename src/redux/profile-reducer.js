@@ -20,10 +20,10 @@ const profileReducer = (state = initialState, action) => {
                 message: state.newPost, // просто заносим в новое сообщение текущий текст текстэрии
                 likesCount: 0
             };
-            return {
-                ...state,
-                posts: [...state.posts, newPost],
-                newPost: ''
+            return { // сразу создаем и возвращаем объект
+                ...state, // делаем поверхностную копию
+                posts: [...state.posts, newPost], // делаем глубокую копию, помещаем в конец новый пост
+                newPost: '' // зануляем текущее значение
             }
         }
         case CHANGE_NEW_POST: {
