@@ -1,14 +1,21 @@
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_POST = 'CHANGE-NEW-POST';
+const SET_USER_PROFILE = 'SET-USER-PROFILE';
 
-export const addPostActionCreator = () => ({type: ADD_POST});
-export const updatePostActionCreator = (message) => ({type: CHANGE_NEW_POST, value: message });
+export const addPost = () => ({type: ADD_POST});
+export const updatePost = (message) => ({type: CHANGE_NEW_POST, value: message });
+export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile });
 
-let initialState = {posts: [
+
+let initialState = {
+    posts: [
         {id: 1, message: 'Hi, how are you', likesCount: 10},
         {id: 2, message: 'Hello. I\'m ok', likesCount: 15}
     ],
-    newPost: ''};
+    newPost: '',
+    profile: null
+
+};
 
 const profileReducer = (state = initialState, action) => {
 
@@ -30,6 +37,12 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 newPost: action.value
+            }
+        }
+        case SET_USER_PROFILE: {
+            return{
+                ...state,
+                profile: action.profile
             }
         }
     }

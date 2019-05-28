@@ -4,6 +4,7 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS = 'SET_TOTAL_USERS';
+const SET_LOADING_STATUS = 'SET_LOADING_STATUS';
 
 
 // Экшен-криейторы
@@ -12,6 +13,7 @@ export const unfollow = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users});
 export const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 export const setTotalUsers = (count) => ({type: SET_TOTAL_USERS, count});
+export const setLoadingStatus = (status) => ({type: SET_LOADING_STATUS, status});
 
 
 // Начальное значение
@@ -19,7 +21,8 @@ let initialState = {
     users: [],
     pageSize: 5, // размер страницы ( количество выводимых элементов )
     totalUsers: 0, // общее количество пользователей
-    currentPage: 1 // текущая страница
+    currentPage: 1, // текущая страница
+    isFetching: false
     // Разделив общее количество пользователей на размер страницы, мы узнаем сколько всего страниц
 };
 
@@ -76,6 +79,10 @@ const usersReducer = (state = initialState, action) => { // на входе на
             //debugger;
             //let nextUsers = action.users;
             return {...state, totalUsers: action.count}
+        }
+        case SET_LOADING_STATUS: {
+           // debugger;
+            return {...state, isFetching: action.status}
         }
     }
     return state;
