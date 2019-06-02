@@ -8,9 +8,9 @@ const MyPosts = (props) => {
 
 
     let postChange = () => {
-        //  debugger;
+        // debugger;
         let text = textArea.current.value;
-        props.onPostChange(text);
+        props.updatePost(text);
     };
 
     let posts = props.postsData.posts.map(p => <Post message={p.message} likecounts={p.likesCount}/>);
