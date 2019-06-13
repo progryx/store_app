@@ -19,10 +19,7 @@ import 'bootstrap/dist/css/bootstrap-reboot.css';
 import './App.css';
 
 const App = (props) => {
-
         return (
-
-
                 <div className="container">
                     <div className="row">
                         <div className="col-12"><HeaderContainer/></div>

@@ -1,11 +1,25 @@
+//Imports
+import {usersAPI} from "../api/api";
+
+// Actions
 const ADD_POST = 'ADD-POST';
 const CHANGE_NEW_POST = 'CHANGE-NEW-POST';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
 
+// Action-Creators
 export const addPost = () => ({type: ADD_POST});
 export const updatePost = (message) => ({type: CHANGE_NEW_POST, value: message });
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile });
 
+//Thunks
+
+export const getUserProfile = (userId = 2) => {
+    return (dispatch) => {
+        usersAPI.getUserProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data));
+        });
+    }
+};
 
 let initialState = {
     posts: [

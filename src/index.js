@@ -7,7 +7,6 @@ import {Provider} from "react-redux"; // спомощью Provider прокид�
                                     // СТОР
 import {BrowserRouter} from "react-router-dom";
 
-
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>

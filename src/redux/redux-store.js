@@ -1,8 +1,9 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
+import thunkMiddleWare from "redux-thunk";
 
 let reducers = combineReducers({ // комбинируем редюсеры, редюсер - логика компоненты
     profilePage: profileReducer, // название стор.объект_данных : обработчик-редюсер
@@ -11,7 +12,7 @@ let reducers = combineReducers({ // комбинируем редюсеры, р�
     auth: authReducer
 });
 
-let store = createStore(reducers); // создаем стор по комб. редюсерам
+let store = createStore(reducers, applyMiddleware(thunkMiddleWare)); // создаем стор по комб. редюсерам и подключаем поддержку "посредника" Thunk
 
 window.store = store;
 export default store;
