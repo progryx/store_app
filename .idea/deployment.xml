@@ -9,6 +9,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="react_web">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/manager/client" local="$PROJECT_DIR$/../react_live" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
     </serverData>
     <option name="myUploadOnCheckinName" value="progryx" />
   </component>

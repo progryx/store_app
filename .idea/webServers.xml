@@ -3,11 +3,19 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="e75eb3f7-ee07-4a8f-bf78-e20dca7a543a" name="progryx" url="http://progryx.beget.tech">
-        <fileTransfer host="progryx.beget.tech" port="21" rootFolder="/progryx/public_html">
+        <fileTransfer host="progryx.beget.tech" port="22" rootFolder="/progryx/public_html" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
-          <option name="port" value="21" />
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="0c6e4548-00a6-400a-bf22-aa4eea530ab6" name="react_web" url="http://reactweb.ru:3000">
+        <fileTransfer host="92.53.120.252" port="22" rootFolder="/home/manager/client" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>

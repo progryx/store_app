@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Preloader from "../../Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 
 const ProfileInfo = (props) => {
@@ -15,6 +16,9 @@ const ProfileInfo = (props) => {
                 <div className="col-4"><img className="card-img" src={props.profile.photos.large} alt=""/></div>
                 <div className="col-8">
                     <ul className="list-group">
+                        <li className="list-group-item">
+                            <ProfileStatus status={"Hello Bitch"} {...props} />
+                        </li>
                         <li className="list-group-item">
                             {props.profile.fullName}
                         </li>

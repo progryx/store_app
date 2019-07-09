@@ -1,6 +1,21 @@
 .header {
     grid-area: h;
-    background: #060;
+    background-color: #6f42c1;
+    color: rgba(255,255,255,.5);
+    padding: 1rem;
+    margin: 1rem 0;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    border-radius: .25rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.header .logo {
+
+}
+
+.header .login {
+    justify-self: end;
 }
 
 .header img {
