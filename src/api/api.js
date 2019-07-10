@@ -29,5 +29,13 @@ export const usersAPI = {
 export const authAPI = {
     getAuthData() {
         return instance.get(`auth/me`)
+    },
+    setUserLogin(email,password,rememberMe) {
+        return instance.post(`auth/login`,{
+            email,password,rememberMe
+        })
+    },
+    userLogOut() {
+        return instance.post(`auth/logout`);
     }
 }

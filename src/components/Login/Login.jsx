@@ -1,22 +1,25 @@
 import React from 'react';
-import login from './login.module.css';
+import {connect} from "react-redux";
+import {LoginForm} from "./LoginForm";
+import {reduxForm} from "redux-form";
+import {loginUser} from "../../redux/auth-reducer";
 
-const Login = (props) => {
+ const Login = (props) => {
+    const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
+    const onSubmit = (data) => {
+        let remember_me = data.rememberMe ? data.rememberMe : false;
+        props.loginUser(data.email,data.password,remember_me);
+    };
+
     return (
-        <form action="" className={login.form}>
-                <h1 className={login.header}>{'Please sign in'}</h1>
-                <label htmlFor="inputEmail" className={login.email_label}>{'Email address'}</label>
-                <input type="email" id="inputEmail" className={login.email_input + ' form-control' } placeholder="Email address" required="" autoFocus=""/>
-                    <label htmlFor="inputPassword" className={login.pass_label}>{'Password'}</label>
-                    <input type="password" id="inputPassword" className={login.password_input + ' form-control' } placeholder="Password" required=""/>
-                        <div className={login.checkbox}>
-                            <label>
-                                <input type="checkbox" value="remember-me"/>{'Remember me'}
-                            </label>
-                        </div>
-                        <button className="btn btn-lg btn-primary btn-block" type="submit">{'Sign in'}</button>
-        </form>
+        <LoginReduxForm onSubmit={onSubmit} {...props} />
     )
-}
+};
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+};
+
+ export default connect(mapStateToProps,{loginUser})(Login);
