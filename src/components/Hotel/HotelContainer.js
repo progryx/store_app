@@ -1,25 +1,29 @@
+//imports
 import React from 'react';
 import Hotel from "./Hotel";
 import {connect} from "react-redux";
-import {setHotel} from "../../redux/hotel-reducer";
+import {withRouter} from "react-router-dom";
+import {getHotel, setHotel} from "../../redux/hotel-reducer";
+import compose from "redux/src/compose";
 
 
-
-class HotelContainer extends React.Component{
+// main class
+class HotelContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getCurrentHotel(this.props.match.params.userId)
+        this.props.getHotel(this.props.match.params.hotelId) // set hotel page by ID
     }
 
     render() {
-    return <div>
-        <Hotel {...this.props} profile={this.props.profile}/>
-    </div>
+        return <Hotel {...this.props}/>
     }
 }
 
 let mapStateToProps = (state) => ({
-    hotel: state.hotelPage.hotel,
+    hotel: state.hotelPage.hotel
 });
 
-export default connect (mapStateToProps, { setHotel, getHotel })(HotelContainer);
+export default compose(
+    connect(mapStateToProps, {setHotel, getHotel}),
+    withRouter
+)(HotelContainer);

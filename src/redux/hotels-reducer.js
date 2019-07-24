@@ -1,43 +1,40 @@
-//Импорты
-import hotels from '../api/data';
+//Imports
+import {hotelsAPI} from "../api/api";
 
-// Экшены
+// Actions
 const SET_HOTELS = 'SET_HOTELS';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_LOADING_STATUS = 'SET_LOADING_STATUS';
 
-// Экшен-криейторы
+// Action-creators
+export const setHotels = (hotels) => ({type: SET_HOTELS, hotels}); // установить отели
 
-export const setHotels = (users) => ({type: SET_HOTELS, hotels}); // установить отели
-export const setLoadingStatus = (status) => ({type: SET_LOADING_STATUS, status});
 
-// Thunks (преобразователи)
-
-export const getHotels = () => { // получить всех пользователей на странице
+// Thunks(преобразователи)
+export const getHotels = (ids) => { // получить всех пользователей на странице
     return (dispatch) => {
-        dispatch(setHotels(hotels));
+        dispatch(setHotels(hotelsAPI.getHotels(ids)));
+    }
+};
+
+export const getResult = (query) => { // получить всех пользователей на странице
+    return (dispatch) => {
+        dispatch(setHotels(hotelsAPI.getSearchResult(query)));
     }
 };
 
 
-// Начальное значение
+// Initial state
 let initialState = {
-    hotels: [],
-    isFetching: false
+    hotels: []
 };
 
 
-// Главная функция
-const hotelsReducer = (state = initialState, action) => { // на входе начальное значение и входящий экшен
+// reducer function
+const hotelsReducer = (state = initialState, action) => {
     switch (action.type) {
         default:
-            return state; // ничего не происходит, возвращает то что пришло
+            return state;
         case SET_HOTELS: {
             return {...state, hotels: action.hotels}
-        }
-        case SET_LOADING_STATUS: {
-            // debugger;
-            return {...state, isFetching: action.status}
         }
     }
     return state;

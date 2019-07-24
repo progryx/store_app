@@ -12,3 +12,26 @@
     grid-area:c;
     background: #C6E746;
 }
+
+.stars:after{
+    content: '';
+    background: url(http://www.iconhot.com/icon/png/glossy/256/star-52.png);
+    background-size: contain;
+    position: absolute;
+    width: 55px;
+    height: 18px;
+    z-index: 999;
+}
+
+.star_2:after{
+    width: 36px;
+}
+.star_3:after{
+    width: 53px;
+}
+.star_4:after{
+    width: 72px;
+}
+.star_5:after{
+    width: 91px;
+}

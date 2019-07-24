@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 import {Route} from "react-router-dom";
 
 // Компоненты и контейнеры
-import UsersContainer from "./components/Hotels/HotelsContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import ProfileContainer from './components/Hotel/HotelContainer.js';
+import HotelsContainer from "./components/Hotels/HotelsContainer";
+import Header from "./components/Header/Header";
+import HotelContainer from './components/Hotel/HotelContainer.js';
 
 
 // Стили
@@ -20,13 +20,14 @@ const App = (props) => {
         return (
                 <div className="container">
                     <div className="row">
-                        <div className="col-12"><HeaderContainer/></div>
+                        <div className="col-12"><Header/></div>
                     </div>
 
                     <div className="row">
                         <div className="col-12">
-                            <Route path="/" render ={ () =>  <UsersContainer/>  }/>
-                            <Route path="/hotel/:userId?" render ={ () =>  <ProfileContainer/>  }/>
+
+                            <Route exact path="/" render ={ () =>  <HotelsContainer/>  }/>
+                            <Route path="/hotel/:hotelId?" render ={ () =>  <HotelContainer/>  }/>
                         </div>
                     </div>
                 </div>

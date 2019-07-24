@@ -1,38 +1,26 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Hotels from "./Hotels";
-import Preloader from "../Preloader/Preloader";
-import {getHotels} from "../../redux/hotels-reducer";
+import {getHotels, getResult} from "../../redux/hotels-reducer";
+import {randomNumberSeria} from "../../api/api";
 
 
 class HotelsContainer extends React.Component {
 
-    constructor(props) { // создаем конструктор
-        super(props); // передаем конструирование пропсов родителю
+    componentDidMount() {
+        this.props.getHotels(randomNumberSeria(0, 19, 5));
     }
-
-    componentDidMount() { // элемент ЖЦ, вызывается после отрисовки компоненты.
-        this.props.getHotels();
-    }
-
 
     render() {
-
-        return <>
-            {this.props.isFetching ? <Preloader/> : null}
-            <Hotels
-                hotels={this.props.hotels}
-            />
-        </>
+        return <Hotels {...this.props}/>
     };
 }
 
 let mapStateToProps = (state) => {
     return {
-        hotels: state.hotelsPage.hotels,
-        isFetching: state.hotelsPage.isFetching,
+        hotels: state.hotelsPage.hotels
     }
 };
 
 
-export default connect(mapStateToProps, { getHotels })(HotelsContainer);
+export default connect(mapStateToProps, {getHotels, getResult})(HotelsContainer);
