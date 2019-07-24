@@ -11,7 +11,7 @@ const Hotels = (props) => {
     const searchingProceed = e => {
         setSearch(e.target.value); // set input value
         props.getResult(search); // get search result
-    }
+    };
 
 
     return <div className='container'>

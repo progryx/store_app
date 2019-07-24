@@ -14,7 +14,7 @@ export const BookForm = (props) => {
             <Field component={"input"} name={"date_depart"} type="date" id="inputDateDepart" className={'form-control'}
                    required autoFocus=""/>
             <label htmlFor="countOfPeople">{'Count of people'}</label>
-            <Field component={"input"} name={"count"} type="number" id="countOfPeople" className={'form-control'}
+            <Field component={"input"} name={"count"} type="number" id="countOfPeople" min="1" className={'form-control'}
                    required/>
             <button className="btn btn-lg btn-primary btn-block my-2" type="submit">{'Book the room'}</button>
         </form>

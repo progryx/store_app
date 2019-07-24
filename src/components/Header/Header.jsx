@@ -1,7 +1,9 @@
+// imports
 import React from 'react';
 import header from './Header.module.css';
 import {NavLink} from "react-router-dom";
 
+// main function
 const Header = (props) => {
     return (
         <div className={header.header}>

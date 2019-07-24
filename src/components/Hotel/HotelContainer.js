@@ -11,11 +11,11 @@ import compose from "redux/src/compose";
 class HotelContainer extends React.Component {
 
     componentDidMount() {
-        this.props.getHotel(this.props.match.params.hotelId) // set hotel page by ID
+        this.props.getHotel(this.props.match.params.hotelId); // set hotel page by ID
     }
 
     render() {
-        return <Hotel {...this.props}/>
+        return <Hotel {...this.props} />
     }
 }
 
