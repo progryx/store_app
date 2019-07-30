@@ -1,15 +1,29 @@
 .header {
-    grid-area: h;
     background-color: #6f42c1;
     color: rgba(255, 255, 255, .5);
     padding: 1rem;
     margin: 1rem 0;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
     border-radius: .25rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 .header img {
-    max-width: 400px;
+    max-width: 100px;
 }
 
+
+.modal_overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    outline: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #000;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.modal {
+
+}

@@ -1,40 +1,51 @@
 // imports
-import hotels from '../api/data';
+import products from '../api/data';
 import {createFilter} from 'react-search-input'
-
-//constants
-const KEYS_TO_FILTERS = ['name', 'city'];
 
 
 //apis
-export const hotelsAPI = {
-    getHotels(ids) { // get all hotels by id's
-        let rand_hotels = [];
-        for (let i = 0; i < ids.length; i++) {
-            let res = hotels.filter(h => h.id == ids[i]);
-            rand_hotels.push(res[0]);
-        }
-
-        return rand_hotels;
-    },
-    getActiveHotel(hotelId) { // get current hotel by ID
-        let currentHotel = hotels.filter(h => h.id == hotelId);
-        return currentHotel[0];
-    },
-    getSearchResult(query) { // searching result
-        let result = [];
-        result = hotels.filter(createFilter(query, KEYS_TO_FILTERS));
-        return result === undefined ? [] : result;
+export const productsAPI = {
+    getProducts() { // get all products by id's
+      return [...products];
     }
 }
 
-// additive functions
-export const randomNumberSeria = (min, max, count = 1) => { // generate random sequence of id's
-    let result = [];
-    let rand;
-    while (result.length < count) {
-        rand = Math.round(min - 0.5 + Math.random() * (max - min + 1));
-        if (!result.includes(rand)) result.push(rand);
+export const cartAPI = {
+    addProduct(id) { // get all products by id's
+        let resultArr = products.filter( p => p.id === id);
+       // debugger;
+        return resultArr[0];
     }
-    return result;
+};
+
+export const authAPI = {
+    getAuthData() {
+        let authData = JSON.parse(localStorage.getItem('authData'));
+        return authData;
+    },
+    signUpUser(email,password) {
+        let authData = {
+            userId: 1,
+            email,
+            password: password,
+            isAuth: false
+        };
+        return localStorage.setItem('authData',JSON.stringify(authData));
+    },
+    loginUser(email,password) {
+        let currentUser = JSON.parse(localStorage.getItem('authData'));
+        if (email && password) {
+            if (email === currentUser.email) {
+                if (password === currentUser.password) {
+                    return localStorage.setItem('authData',JSON.stringify({...currentUser,isAuth: true}));
+                }
+            }
+        }
+
+        },
+    userLogOut() {
+        let currentUser = JSON.parse(localStorage.getItem('authData'));
+        localStorage.setItem('authData',JSON.stringify({...currentUser,isAuth: false}));
+        return this.getAuthData();
+    }
 }
